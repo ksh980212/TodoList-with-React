@@ -7,15 +7,16 @@ const TodoListItem = ({ todo, onRemove, onToggle }) => {
     const { id, text, checked } = todo;
     return (
         <div className="TodoListItem">
-            <div className={cn('checkbox', { checked })} onClick={() => onToggle(id)}>
+            <div className={cn('checkbox', { checked })} onClick={() => onToggle(id)}>  {/** 클릭시 할일 완료  */}
                 {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
-                <div className="text">{text}</div>
+                <div className="text">{text}</div> {/** 할일 Text */}
             </div>
-            <div className="remove" onClick={() => onRemove(id)}>
+            <div className="remove" onClick={() => onRemove(id)}> {/** 삭제 버튼*/}
                 <MdRemoveCircleOutline />
             </div>
 
         </div>
+        /** TodoList 각 한개의 요소 */
     )
 }
 

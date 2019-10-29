@@ -11,29 +11,19 @@ function App() {
     )
   })
 
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      text: "리액트의 기초 알아보기",
-      checked: true
-    },
-    {
-      id: 2,
-      text: "컴포넌트 스타일링 해보기",
-      checked: true,
-    },
-    {
-      id: 3,
-      text: "일정 관리 앱 만들어 보기",
-      checked: false
-    }
-  ]);
+  const [todos, setTodos] = useState([]);
 
   const onRemove = useCallback(id => {
     setTodos(todos.filter(todo => todo.id !== id));
+    //todo에서 같은 id만 제외하고 나머지만 필터링.
   }, [todos])
 
-  const nextId = useRef(4);
+  const nextId = useRef(0);
+
+  /** 현재 todos의 index
+   *  useRef로 렌더링이 안되게해서
+   *  성능 향상
+   */
 
   const onInsert = useCallback(text => {
     const todo = {
@@ -42,15 +32,19 @@ function App() {
       checked: false
     };
     setTodos(todos.concat(todo));
-    nextId.current += 1;
+    nextId.current += 1; //useRef +1 
   }, [todos])
+
+  /** 할일 추가하기 
+   *  기능
+   */
 
 
   return (
     <div>
       <TodoTemplate>
-        <TodoInsert onInsert={onInsert} />
-        <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
+        <TodoInsert onInsert={onInsert} />  {/** 할 일을 입력하세요 */}
+        <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} /> {/** 할일 목록 */}
       </TodoTemplate>
     </div>
   );

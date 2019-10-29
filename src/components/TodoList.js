@@ -9,6 +9,9 @@ const TodoList = ({ todos, onRemove, onToggle }) => {
                 <TodoListItem todo={todo} key={todos.id} onRemove={onRemove} onToggle={onToggle} />
             ))}
         </div>
+        /**
+         * Todo 목록 * n 개
+         */
     )
 }
 
